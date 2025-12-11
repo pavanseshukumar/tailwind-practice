@@ -1,3 +1,6 @@
+"use client";
+import FlyingPosters from "@/components/FlyingPosters";
+import PillNav from "@/components/PillNav";
 import { Button } from "@/components/ui/button";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import { NoiseBackground } from "@/components/ui/noise-background";
@@ -5,10 +8,35 @@ import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
 import { cn } from "@/lib/utils";
 import React from "react";
 
+const items = [
+  "https://picsum.photos/500/500?grayscale",
+  "https://picsum.photos/600/600?grayscale",
+  "https://picsum.photos/400/400?grayscale",
+];
+
 const page = () => {
   return (
     <div className="max-w-4xl mx-auto mt-10">
-      <h1 className="text-2xl font-bold mb-5">Bento Grid</h1>
+      <PillNav
+        logoAlt="Company Logo"
+        items={[
+          { label: "Home", href: "/" },
+          { label: "About", href: "/about" },
+          { label: "Services", href: "/services" },
+          { label: "Contact", href: "/contact" },
+        ]}
+        activeHref="/"
+        className="custom-nav"
+        ease="power2.easeOut"
+        baseColor="#000000"
+        pillColor="#ffffff"
+        hoveredPillTextColor="#ffffff"
+        pillTextColor="#000000"
+      />
+      <div style={{ height: "600px", position: "relative" }}>
+        <FlyingPosters items={items} />
+      </div>
+      ;<h1 className="text-2xl font-bold mb-5">Bento Grid</h1>
       <Button
         variant="primary"
         className="bg-blue-500 text-white cursor-pointer"
@@ -21,7 +49,6 @@ const page = () => {
         your wallet. You are not your fucking khakis.{" "}
         <EncryptedText text="All singing, all dancing crap of the world." />
       </p>
-
       <div className="mx-auto max-w-sm">
         <NoiseBackground
           gradientColors={[
