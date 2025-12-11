@@ -1,12 +1,26 @@
 "use client";
 import FlyingPosters from "@/components/FlyingPosters";
 import PillNav from "@/components/PillNav";
+import StaggeredMenu from "@/components/StaggeredMenu";
 import { Button } from "@/components/ui/button";
 import { EncryptedText } from "@/components/ui/encrypted-text";
 import { NoiseBackground } from "@/components/ui/noise-background";
 import { PixelatedCanvas } from "@/components/ui/pixelated-canvas";
 import { cn } from "@/lib/utils";
 import React from "react";
+
+const menuItems = [
+  { label: "Home", ariaLabel: "Go to home page", link: "/" },
+  { label: "About", ariaLabel: "Learn about us", link: "/about" },
+  { label: "Services", ariaLabel: "View our services", link: "/services" },
+  { label: "Contact", ariaLabel: "Get in touch", link: "/contact" },
+];
+
+const socialItems = [
+  { label: "Twitter", link: "https://twitter.com" },
+  { label: "GitHub", link: "https://github.com" },
+  { label: "LinkedIn", link: "https://linkedin.com" },
+];
 
 const items = [
   "https://picsum.photos/500/500?grayscale",
@@ -16,58 +30,56 @@ const items = [
 
 const page = () => {
   return (
-    <div className="max-w-4xl mx-auto mt-10">
-      <PillNav
-        logoAlt="Company Logo"
-        items={[
-          { label: "Home", href: "/" },
-          { label: "About", href: "/about" },
-          { label: "Services", href: "/services" },
-          { label: "Contact", href: "/contact" },
-        ]}
-        activeHref="/"
-        className="custom-nav"
-        ease="power2.easeOut"
-        baseColor="#000000"
-        pillColor="#ffffff"
-        hoveredPillTextColor="#ffffff"
-        pillTextColor="#000000"
+    <div
+      style={{ minHeight: "100vh", background: "#1a1a1a" }}
+      className="overflow-x-hidden"
+    >
+      <StaggeredMenu
+        position="right"
+        items={menuItems}
+        socialItems={socialItems}
+        displaySocials={true}
+        displayItemNumbering={true}
+        menuButtonColor="#fff"
+        openMenuButtonColor="#000"
+        changeMenuColorOnOpen={true}
+        colors={["#B19EEF", "#5227FF"]}
+        logoUrl="/path-to-your-logo.svg"
+        accentColor="#ff6b6b"
+        isFixed={true}
+        onMenuOpen={() => console.log("Menu opened")}
+        onMenuClose={() => console.log("Menu closed")}
       />
-      <div style={{ height: "600px", position: "relative" }}>
-        <FlyingPosters items={items} />
-      </div>
-      ;<h1 className="text-2xl font-bold mb-5">Bento Grid</h1>
-      <Button
-        variant="primary"
-        className="bg-blue-500 text-white cursor-pointer"
-      >
-        Click me
-      </Button>
-      <p className="text-left">
-        You are not your job, you&apos;re not how much money you have in the
-        bank. You are not the car you drive. You&apos;re not the contents of
-        your wallet. You are not your fucking khakis.{" "}
-        <EncryptedText text="All singing, all dancing crap of the world." />
-      </p>
-      <div className="mx-auto max-w-sm">
-        <NoiseBackground
-          gradientColors={[
-            "rgb(255, 100, 150)",
-            "rgb(100, 150, 255)",
-            "rgb(255, 200, 100)",
-          ]}
-        >
-          <Card>
-            <div className="px-4 py-2">
-              <EncryptedText text="How to create a bento grid with Tailwind" />
-              <h3 className="text-left text-lg font-semibold text-balance text-neutral-800 dark:text-neutral-200"></h3>
-              <p className="mt-2 text-left text-sm text-neutral-600 dark:text-neutral-400">
-                Learn how to create a bento grid with Tailwind CSS, Next.js and
-                Framer Motion.
-              </p>
-            </div>
-          </Card>
-        </NoiseBackground>
+
+      <div className="max-w-4xl mx-auto pt-16 px-4">
+        <div className="mt-16">
+          <p className="text-left text-white mt-4">
+            You are not your job, you&apos;re not how much money you have in the
+            bank. You are not the car you drive. You&apos;re not the contents of
+            your wallet. You are not your fucking khakis.{" "}
+            <EncryptedText text="All singing, all dancing crap of the world." />
+          </p>
+          <div className="mx-auto max-w-sm mt-8">
+            <NoiseBackground
+              gradientColors={[
+                "rgb(255, 100, 150)",
+                "rgb(100, 150, 255)",
+                "rgb(255, 200, 100)",
+              ]}
+            >
+              <Card>
+                <div className="px-4 py-2">
+                  <EncryptedText text="How to create a bento grid with Tailwind" />
+                  <h3 className="text-left text-lg font-semibold text-balance text-neutral-800 dark:text-neutral-200"></h3>
+                  <p className="mt-2 text-left text-sm text-neutral-600 dark:text-neutral-400">
+                    Learn how to create a bento grid with Tailwind CSS, Next.js
+                    and Framer Motion.
+                  </p>
+                </div>
+              </Card>
+            </NoiseBackground>
+          </div>
+        </div>
       </div>
     </div>
   );

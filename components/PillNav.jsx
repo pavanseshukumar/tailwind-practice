@@ -176,8 +176,8 @@ const PillNav = ({
     if (hamburger) {
       const lines = hamburger.querySelectorAll(".hamburger-line");
       if (newState) {
-        gsap.to(lines[0], { rotation: 45, y: 3, duration: 0.3, ease });
-        gsap.to(lines[1], { rotation: -45, y: -3, duration: 0.3, ease });
+        gsap.to(lines[0], { rotation: 45, y: 4, duration: 0.3, ease });
+        gsap.to(lines[1], { rotation: -45, y: -4, duration: 0.3, ease });
       } else {
         gsap.to(lines[0], { rotation: 0, y: 0, duration: 0.3, ease });
         gsap.to(lines[1], { rotation: 0, y: 0, duration: 0.3, ease });
@@ -239,9 +239,9 @@ const PillNav = ({
   };
 
   return (
-    <div className="absolute top-[1em] z-[1000] w-full left-0 md:w-auto md:left-auto">
+    <div className="relative z-[1000] w-full">
       <nav
-        className={`w-full md:w-max flex items-center justify-between md:justify-start box-border px-4 md:px-0 ${className}`}
+        className={`w-full flex items-center justify-between md:justify-center box-border px-4 md:px-0 ${className}`}
         aria-label="Primary"
         style={cssVars}
       >
@@ -350,7 +350,7 @@ const PillNav = ({
           onClick={toggleMobileMenu}
           aria-label="Toggle menu"
           aria-expanded={isMobileMenuOpen}
-          className="md:hidden rounded-full border-0 flex flex-col items-center justify-center gap-1 cursor-pointer p-0 relative"
+          className="md:hidden rounded-full border-0 flex flex-col items-center justify-center gap-2 cursor-pointer p-0 relative"
           style={{
             width: "var(--nav-h)",
             height: "var(--nav-h)",
@@ -358,21 +358,22 @@ const PillNav = ({
           }}
         >
           <span
-            className="hamburger-line w-4 h-0.5 rounded origin-center transition-all duration-[10ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+            className="hamburger-line w-4 h-0.5 rounded origin-center"
             style={{ background: "var(--pill-bg, #fff)" }}
           />
           <span
-            className="hamburger-line w-4 h-0.5 rounded origin-center transition-all duration-[10ms] ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+            className="hamburger-line w-4 h-0.5 rounded origin-center"
             style={{ background: "var(--pill-bg, #fff)" }}
           />
         </button>
       </nav>
       <div
         ref={mobileMenuRef}
-        className="md:hidden absolute top-[3em] left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"
+        className="md:hidden absolute top-full mt-2 left-4 right-4 rounded-[27px] shadow-[0_8px_32px_rgba(0,0,0,0.12)] z-[998] origin-top"
         style={{
           ...cssVars,
           background: "var(--base, #f0f0f0)",
+          visibility: "hidden",
         }}
       >
         <ul className="list-none m-0 p-[3px] flex flex-col gap-[3px]">
